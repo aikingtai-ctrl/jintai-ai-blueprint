@@ -1,0 +1,477 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>金泰制作云 · 算力承载力</title>
+<style>
+:root{
+  --red:#e50914;
+  --red-deep:#b00710;
+  --bg:#141414;
+  --bg-2:#0b0b0b;
+  --card:#1f1f1f;
+  --card-hi:#2a2a2a;
+  --ink:#ffffff;
+  --ink-2:#b3b3b3;
+  --ink-3:#6d6d6d;
+  --gold:#d9b45c;
+  --cyan:#54c8e8;
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{
+  background:var(--bg);color:var(--ink);
+  font-family:"PingFang SC","Microsoft YaHei","Noto Sans SC",system-ui,sans-serif;
+  overflow-x:hidden;line-height:1.65;-webkit-font-smoothing:antialiased;
+}
+::selection{background:rgba(229,9,20,.5)}
+::-webkit-scrollbar{height:8px;width:10px}
+::-webkit-scrollbar-thumb{background:#3a3a3a;border-radius:4px}
+::-webkit-scrollbar-track{background:transparent}
+
+/* ===== 开场 ===== */
+#intro{
+  position:fixed;inset:0;z-index:99;background:#000;
+  display:grid;place-items:center;
+  animation:introOut .8s 2.4s forwards;
+}
+#intro .mark{
+  font-size:120px;font-weight:900;color:var(--red);
+  text-shadow:0 0 60px rgba(229,9,20,.6);
+  animation:markIn 2.2s cubic-bezier(.2,.7,.2,1) forwards;
+  letter-spacing:.05em;
+}
+@keyframes markIn{
+  0%{opacity:0;transform:scale(2.4)}
+  35%{opacity:1;transform:scale(1)}
+  75%{opacity:1;transform:scale(1)}
+  100%{opacity:1;transform:scale(.92)}
+}
+@keyframes introOut{to{opacity:0;visibility:hidden}}
+
+/* ===== 导航 ===== */
+nav{
+  position:fixed;top:0;left:0;right:0;z-index:20;
+  display:flex;align-items:center;gap:34px;
+  padding:0 4vw;height:68px;
+  background:linear-gradient(180deg,rgba(0,0,0,.85),transparent);
+  transition:background .4s;
+}
+nav.solid{background:#0b0b0b}
+.brand{font-size:24px;font-weight:900;color:var(--red);letter-spacing:.06em;text-shadow:0 0 24px rgba(229,9,20,.4)}
+nav a{color:var(--ink-2);text-decoration:none;font-size:14px;transition:color .3s}
+nav a:hover{color:#fff}
+@media(max-width:760px){nav a{display:none}}
+
+/* ===== Billboard ===== */
+.billboard{
+  position:relative;min-height:92vh;display:flex;align-items:center;
+  background:
+    radial-gradient(120% 90% at 78% 18%,rgba(229,9,20,.28),transparent 55%),
+    radial-gradient(90% 80% at 15% 85%,rgba(84,200,232,.10),transparent 60%),
+    linear-gradient(180deg,#1a1a1a 0%,#141414 100%);
+  overflow:hidden;
+}
+.bb-scan{
+  position:absolute;inset:0;pointer-events:none;opacity:.5;
+  background:repeating-linear-gradient(0deg,transparent 0 3px,rgba(0,0,0,.18) 3px 4px);
+}
+.bb-glow{
+  position:absolute;width:55vw;height:55vw;right:-15vw;top:-18vw;border-radius:50%;
+  background:radial-gradient(circle,rgba(229,9,20,.22),transparent 65%);
+  filter:blur(60px);animation:breathe 7s ease-in-out infinite;
+}
+@keyframes breathe{0%,100%{opacity:.7;transform:scale(1)}50%{opacity:1;transform:scale(1.12)}}
+.bb-inner{position:relative;z-index:2;padding:120px 4vw 60px;max-width:1500px;width:100%}
+.bb-tags{display:flex;gap:12px;margin-bottom:22px;animation:up 1s 2.5s both}
+.bb-tags span{font-size:12px;letter-spacing:.2em;padding:5px 14px;border-radius:4px;font-weight:700}
+.bb-tags .t1{background:var(--red);color:#fff}
+.bb-tags .t2{border:1px solid #555;color:var(--ink-2)}
+.billboard h1{
+  font-size:clamp(40px,6.4vw,84px);font-weight:900;line-height:1.12;letter-spacing:.02em;
+  animation:up 1s 2.65s both;
+}
+.billboard h1 em{font-style:normal;color:var(--red)}
+.bb-sub{
+  margin-top:24px;max-width:660px;color:var(--ink-2);font-size:clamp(15px,1.6vw,19px);
+  animation:up 1s 2.8s both;
+}
+.bb-sub b{color:#fff}
+.bb-stats{display:flex;gap:40px;margin-top:44px;flex-wrap:wrap;animation:up 1s 2.95s both}
+.bb-stat .n{font-size:clamp(30px,3.6vw,48px);font-weight:900;color:#fff;font-variant-numeric:tabular-nums}
+.bb-stat .n i{font-style:normal;color:var(--red)}
+.bb-stat .l{font-size:13px;color:var(--ink-3);letter-spacing:.1em;margin-top:2px}
+@keyframes up{from{opacity:0;transform:translateY(30px)}to{opacity:1;transform:none}}
+
+/* ===== 区块与横向轨道 ===== */
+.rows{position:relative;z-index:3;margin-top:-40px;padding-bottom:80px}
+.row{margin:52px 0}
+.row-head{display:flex;align-items:baseline;gap:16px;padding:0 4vw;margin-bottom:14px}
+.row-head h2{font-size:clamp(19px,2.2vw,26px);font-weight:800;letter-spacing:.03em}
+.row-head .chip{font-size:12px;letter-spacing:.18em;color:var(--red);border:1px solid rgba(229,9,20,.5);padding:3px 12px;border-radius:4px;font-weight:700;white-space:nowrap}
+.row-head .hint{font-size:12.5px;color:var(--ink-3);margin-left:auto;white-space:nowrap}
+.track{
+  display:flex;gap:14px;overflow-x:auto;padding:10px 4vw 26px;
+  scroll-snap-type:x mandatory;scrollbar-width:thin;
+}
+.card{
+  scroll-snap-align:start;flex:0 0 300px;background:var(--card);
+  border-radius:8px;overflow:hidden;position:relative;
+  border:1px solid #262626;
+  transition:transform .35s cubic-bezier(.2,.8,.2,1),border-color .35s,box-shadow .35s;
+}
+.card:hover{transform:scale(1.05);border-color:#3d3d3d;box-shadow:0 18px 50px rgba(0,0,0,.7);z-index:5}
+.card .head{
+  height:120px;position:relative;display:flex;align-items:flex-end;padding:16px;
+  background:linear-gradient(160deg,var(--hd1,#3a0d10),var(--hd2,#17171a) 75%);
+}
+.card .head::after{content:"";position:absolute;inset:0;background:repeating-linear-gradient(115deg,transparent 0 22px,rgba(255,255,255,.02) 22px 23px)}
+.card .head h3{font-size:19px;font-weight:800;position:relative;z-index:2;line-height:1.35}
+.card .head .big{
+  position:absolute;top:12px;right:16px;font-size:44px;font-weight:900;line-height:1;
+  color:rgba(255,255,255,.14);z-index:1;font-variant-numeric:tabular-nums;
+}
+.card .body{padding:16px}
+.card .metric{display:flex;align-items:baseline;gap:8px;margin-bottom:10px}
+.card .metric .v{font-size:26px;font-weight:900;color:var(--red)}
+.card .metric .v.gold{color:var(--gold)}
+.card .metric .v.cyan{color:var(--cyan)}
+.card .metric .u{font-size:12.5px;color:var(--ink-3)}
+.card p{font-size:13px;color:var(--ink-2);min-height:60px}
+.card p b{color:#fff}
+.bar{height:5px;background:#333;border-radius:3px;margin-top:14px;overflow:hidden}
+.bar i{
+  display:block;height:100%;width:0;border-radius:3px;
+  background:linear-gradient(90deg,var(--red-deep),var(--red));
+  transition:width 1.4s cubic-bezier(.2,.7,.2,1);
+}
+.bar.gold i{background:linear-gradient(90deg,#8d6f2c,var(--gold))}
+.bar.cyan i{background:linear-gradient(90deg,#1e6f85,var(--cyan))}
+.bar-l{display:flex;justify-content:space-between;font-size:11px;color:var(--ink-3);margin-top:6px;letter-spacing:.08em}
+.badge{
+  position:absolute;top:10px;left:0;background:var(--red);color:#fff;
+  font-size:11px;font-weight:800;letter-spacing:.12em;padding:4px 12px 4px 10px;
+  border-radius:0 4px 4px 0;z-index:3;
+}
+.badge.dark{background:#333;color:var(--ink-2)}
+
+/* TOP 榜 */
+.top-card{flex:0 0 340px;display:flex;align-items:stretch;background:transparent;border:none}
+.top-card:hover{transform:scale(1.04)}
+.top-num{
+  flex:0 0 92px;font-size:120px;font-weight:900;line-height:.85;align-self:flex-end;
+  color:#141414;-webkit-text-stroke:3px #4a4a4a;letter-spacing:-.05em;
+  transition:-webkit-text-stroke .3s;
+}
+.top-card:hover .top-num{-webkit-text-stroke:3px var(--red)}
+.top-body{
+  flex:1;background:var(--card);border:1px solid #262626;border-radius:8px;padding:18px;
+}
+.top-body h3{font-size:16.5px;margin-bottom:8px}
+.top-body h3 small{display:block;font-size:11.5px;color:var(--red);letter-spacing:.2em;margin-bottom:4px;font-weight:800}
+.top-body p{font-size:12.5px;color:var(--ink-2)}
+.top-body p b{color:#fff}
+
+/* 对决 */
+.duel{display:grid;grid-template-columns:1fr 1fr;gap:14px;padding:0 4vw;max-width:1500px}
+.duel-card{background:var(--card);border:1px solid #262626;border-radius:10px;padding:32px;position:relative;overflow:hidden;transition:border-color .4s,transform .4s}
+.duel-card:hover{transform:translateY(-4px)}
+.duel-card.d1:hover{border-color:rgba(229,9,20,.6)}
+.duel-card.d2:hover{border-color:rgba(84,200,232,.6)}
+.duel-card .role{font-size:12px;letter-spacing:.3em;font-weight:800;margin-bottom:14px}
+.d1 .role{color:var(--red)}
+.d2 .role{color:var(--cyan)}
+.duel-card h3{font-size:26px;font-weight:900;margin-bottom:4px}
+.duel-card .sub{font-size:13px;color:var(--ink-3);margin-bottom:20px}
+.duel-card ul{list-style:none}
+.duel-card li{padding:9px 0 9px 24px;position:relative;font-size:13.5px;color:var(--ink-2);border-top:1px solid #2b2b2b}
+.duel-card li b{color:#fff}
+.d1 li::before{content:"▶";position:absolute;left:0;top:11px;font-size:9px;color:var(--red)}
+.d2 li::before{content:"▶";position:absolute;left:0;top:11px;font-size:9px;color:var(--cyan)}
+.duel-card li.no::before{content:"✕";color:#e8635c;font-size:12px;top:9px}
+.duel-card li.no{color:#8a6b6b}
+.duel-card li.no b{color:#e8938d}
+@media(max-width:860px){.duel{grid-template-columns:1fr}}
+
+/* 夜间时刻表 */
+.night{
+  margin:70px 4vw 0;max-width:1500px;border-radius:12px;overflow:hidden;
+  background:linear-gradient(160deg,#101020,#0c0c14 70%);
+  border:1px solid #23233a;padding:40px 38px;position:relative;
+}
+.night::before{
+  content:"";position:absolute;inset:0;pointer-events:none;
+  background:radial-gradient(80% 100% at 85% 0%,rgba(84,120,232,.15),transparent 60%);
+}
+.night h2{font-size:clamp(20px,2.4vw,28px);font-weight:900;margin-bottom:6px;position:relative}
+.night h2 i{font-style:normal;color:var(--gold)}
+.night .n-sub{color:var(--ink-3);font-size:13.5px;margin-bottom:30px;position:relative}
+.sched{position:relative}
+.sched-row{display:grid;grid-template-columns:130px 1fr 190px;gap:16px;align-items:center;padding:14px 0;border-top:1px solid #1f1f33}
+.sched-row .who{font-size:14px;font-weight:800}
+.sched-row .who small{display:block;font-weight:400;font-size:11px;color:var(--ink-3);letter-spacing:.08em}
+.lane{height:26px;background:#16162a;border-radius:5px;position:relative;overflow:hidden}
+.lane i{
+  position:absolute;top:3px;bottom:3px;border-radius:4px;
+  display:flex;align-items:center;padding:0 12px;font-size:11px;font-weight:700;
+  letter-spacing:.06em;white-space:nowrap;font-style:normal;color:#fff;
+  background:linear-gradient(90deg,var(--red-deep),var(--red));
+  animation:laneIn 1.2s cubic-bezier(.2,.7,.2,1) both;
+}
+.lane i.gold{background:linear-gradient(90deg,#7a6023,#b8933f);color:#1a1405}
+.lane i.cyan{background:linear-gradient(90deg,#1e5f85,#3aa8cc);color:#04121a}
+@keyframes laneIn{from{transform:translateX(-16px);opacity:0}to{transform:none;opacity:1}}
+.sched-row .out{font-size:13px;color:var(--ink-2);text-align:right}
+.sched-row .out b{color:var(--gold);font-size:16px;font-weight:900}
+.timescale{display:flex;justify-content:space-between;font-size:11px;color:var(--ink-3);padding:8px 0 0;letter-spacing:.1em}
+@media(max-width:760px){.sched-row{grid-template-columns:90px 1fr}.sched-row .out{display:none}}
+
+/* 预告 */
+.next{
+  margin:70px 4vw 0;max-width:1500px;text-align:center;
+  padding:56px 30px;border-radius:12px;
+  background:radial-gradient(70% 120% at 50% 0%,rgba(229,9,20,.16),transparent 65%),var(--card);
+  border:1px solid #2b2b2b;
+}
+.next .pre{font-size:12px;letter-spacing:.4em;color:var(--red);font-weight:800;margin-bottom:14px}
+.next h2{font-size:clamp(22px,3vw,34px);font-weight:900;margin-bottom:14px}
+.next p{color:var(--ink-2);font-size:14.5px;max-width:720px;margin:0 auto}
+.next p b{color:#fff}
+
+footer{padding:50px 4vw;color:var(--ink-3);font-size:12.5px;letter-spacing:.1em;text-align:center}
+footer b{color:var(--red);letter-spacing:.2em}
+
+.reveal{opacity:0;transform:translateY(30px);transition:opacity .8s ease,transform .8s cubic-bezier(.2,.7,.2,1)}
+.reveal.in{opacity:1;transform:none}
+</style>
+</head>
+<body>
+
+<div id="intro"><div class="mark">金</div></div>
+
+<nav id="nav">
+  <div class="brand">JINTAI</div>
+  <a href="#day">日间 · 实时终端</a>
+  <a href="#duel">双机对决</a>
+  <a href="#night">夜间批处理</a>
+  <a href="#limit">承压极限</a>
+  <a href="index.html" style="margin-left:auto;color:var(--gold)">← 战略蓝图</a>
+</nav>
+
+<!-- ============ BILLBOARD ============ -->
+<header class="billboard">
+  <div class="bb-glow"></div>
+  <div class="bb-scan"></div>
+  <div class="bb-inner">
+    <div class="bb-tags"><span class="t1">现役实测档案</span><span class="t2">8×H100 + 4×5090</span><span class="t2">2026 制作季</span></div>
+    <h1>金泰制作云<br><em>两台服务器</em>的真实战力</h1>
+    <p class="bb-sub">实时剪辑 · 调色 · 特效 · 渲染 · AI 生成——<b>5090 是制作车间，H100 是 AI 工厂</b>。白天卖交互，夜里跑批量，同一批卡，利用率翻倍。</p>
+    <div class="bb-stats">
+      <div class="bb-stat"><div class="n" data-n="16">0</div><div class="l">日间交互终端峰值</div></div>
+      <div class="bb-stat"><div class="n" data-n="50">0<i>+</i></div><div class="l">在线审片并发</div></div>
+      <div class="bb-stat"><div class="n" data-n="1200">0</div><div class="l">夜间渲染帧 / 晚</div></div>
+      <div class="bb-stat"><div class="n" data-n="1000">0<i>+</i></div><div class="l">AI 素材段 / 晚</div></div>
+    </div>
+  </div>
+</header>
+
+<main class="rows">
+
+<!-- ============ 日间终端 ============ -->
+<section class="row" id="day">
+  <div class="row-head reveal">
+    <span class="chip">DAY 09:00–22:00</span>
+    <h2>日间 · 实时交互终端</h2>
+    <span class="hint">承载方：4×RTX 5090 → 横向滑动查看</span>
+  </div>
+  <div class="track">
+    <div class="card reveal">
+      <span class="badge">旗舰档</span>
+      <div class="head" style="--hd1:#3a0d10;--hd2:#1a1214"><span class="big">4K</span><h3>精剪 / 调色工作站</h3></div>
+      <div class="body">
+        <div class="metric"><span class="v">3–4</span><span class="u">路并发 · 整卡直通</span></div>
+        <p>DaVinci 重节点 + HDR 实时回放，对标专业调色间；<b>8K 时间线也扛得住</b>。每路占满一张 5090。</p>
+        <div class="bar"><i data-w="90"></i></div>
+        <div class="bar-l"><span>单卡负载</span><span>90%</span></div>
+      </div>
+    </div>
+    <div class="card reveal">
+      <span class="badge">主力档</span>
+      <div class="head" style="--hd1:#2d1a0d;--hd2:#181414"><span class="big">HD</span><h3>代理剪辑工作站</h3></div>
+      <div class="body">
+        <div class="metric"><span class="v gold">8–12</span><span class="u">路并发 · GPU 分片</span></div>
+        <p>1080p 代理粗剪、字幕、整理，<b>河传实训的主力形态</b>；每卡分 2–3 路，重活让位给整卡档。</p>
+        <div class="bar gold"><i data-w="70"></i></div>
+        <div class="bar-l"><span>单卡负载（分片）</span><span>70%</span></div>
+      </div>
+    </div>
+    <div class="card reveal">
+      <span class="badge dark">CPU 重载</span>
+      <div class="head" style="--hd1:#12222d;--hd2:#121418"><span class="big">FX</span><h3>特效合成</h3></div>
+      <div class="body">
+        <div class="metric"><span class="v cyan">2–3</span><span class="u">路并发 · AE / Nuke</span></div>
+        <p>GPU 中载，<b>真瓶颈在 CPU 核数与内存</b>——特效终端的扩容要先看 CPU 配置，不是加卡。</p>
+        <div class="bar cyan"><i data-w="55"></i></div>
+        <div class="bar-l"><span>GPU 占用</span><span>55%</span></div>
+      </div>
+    </div>
+    <div class="card reveal">
+      <span class="badge dark">只读</span>
+      <div class="head" style="--hd1:#1d1d2e;--hd2:#131318"><span class="big">30+</span><h3>在线审片流</h3></div>
+      <div class="body">
+        <div class="metric"><span class="v cyan">30–50</span><span class="u">并发 · 预转码 HLS</span></div>
+        <p>甲方看片不拷贝。几乎不占 GPU，<b>受出口带宽限制</b>（每路 5–10 Mbps），必须预转码、不抢编码器。</p>
+        <div class="bar cyan"><i data-w="18"></i></div>
+        <div class="bar-l"><span>GPU 占用</span><span>≈0</span></div>
+      </div>
+    </div>
+    <div class="card reveal">
+      <span class="badge">带宽须知</span>
+      <div class="head" style="--hd1:#33230d;--hd2:#181510"><span class="big">Mbps</span><h3>画面流出口</h3></div>
+      <div class="body">
+        <div class="metric"><span class="v gold">500–800</span><span class="u">Mbps · 16 终端满载</span></div>
+        <p>4K 每路 20–50 Mbps，1080p 每路 10–20 Mbps。<b>走国内接入带宽，与美国专线无关</b>——河传接入专线按此规格配。</p>
+        <div class="bar gold"><i data-w="80"></i></div>
+        <div class="bar-l"><span>出口占用（满载）</span><span>80%</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 双机对决 ============ -->
+<section class="row" id="duel">
+  <div class="row-head reveal">
+    <span class="chip">VS</span>
+    <h2>双机对决 · 角色分工是全部结论的基础</h2>
+  </div>
+  <div class="duel">
+    <div class="duel-card d1 reveal">
+      <div class="role">制作车间 · THE STUDIO</div>
+      <h3>4 × RTX 5090</h3>
+      <div class="sub">32GB GDDR7 ×4 · 图形全生态</div>
+      <ul>
+        <li><b>RT 光追核心</b>：Blender / Redshift / Octane 渲染利器</li>
+        <li><b>NVENC ×3/卡</b>：远程工作站画面流的命脉</li>
+        <li>DaVinci / PR / UE 原生驱动，<b>剪辑调色特效全兼容</b></li>
+        <li>白天：交互终端 → 夜间：渲染农场，<b>一卡两卖</b></li>
+        <li>后期业务扩容单元 = <b>再加 4×5090 服务器</b>，不是 H100</li>
+      </ul>
+    </div>
+    <div class="duel-card d2 reveal">
+      <div class="role">AI 工厂 · THE FACTORY</div>
+      <h3>8 × H100</h3>
+      <div class="sub">80GB HBM3 ×8 · 计算卡</div>
+      <ul>
+        <li class="no"><b>没有 RT 核心</b>——3D 渲染效率差，干这活不划算</li>
+        <li class="no"><b>没有 NVENC</b>——发不出工作站画面流，帮不了剪辑</li>
+        <li><b>大模型推理</b>：Qwen / GLM 量化部署，剧本分镜字幕批产</li>
+        <li><b>开源视频生成</b>：Wan 本地部署，夜产数百段素材</li>
+        <li>NVDEC ×7/卡：<b>转码 / 超分 / 插帧 / 归档</b>的隐形苦力</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 夜间批处理 ============ -->
+<section class="row" id="night">
+  <div class="night reveal">
+    <h2>夜间批处理 <i>22:00 — 08:00</i> · 白天的卡不能闲着</h2>
+    <p class="n-sub">10 小时窗口，两台机器跑完全不同的队列——这就是"同一批卡利用率翻倍"的具体形态。</p>
+    <div class="sched">
+      <div class="sched-row">
+        <div class="who">4×5090<small>渲染农场</small></div>
+        <div class="lane"><i style="left:2%;width:96%;animation-delay:.1s">3D 渲染队列 · Blender / Redshift / Octane · 断点续跑</i></div>
+        <div class="out"><b>500–1200</b> 帧/晚 ≈ 20–50s 电影级</div>
+      </div>
+      <div class="sched-row">
+        <div class="who">H100 ×6<small>生成集群</small></div>
+        <div class="lane"><i class="cyan" style="left:2%;width:80%;animation-delay:.3s">开源视频模型生成 · 5s/720p 素材段</i></div>
+        <div class="out"><b>600–1000</b> 段/晚 · SEEDANCE 走 API 不占卡</div>
+      </div>
+      <div class="sched-row">
+        <div class="who">H100 ×2<small>LLM 批处理</small></div>
+        <div class="lane"><i class="cyan" style="left:2%;width:58%;animation-delay:.5s">剧本粗稿 · 分镜表 · 字幕翻译</i></div>
+        <div class="out"><b>数百万</b> token/晚</div>
+      </div>
+      <div class="sched-row">
+        <div class="who">NVDEC+CPU<small>归档管线</small></div>
+        <div class="lane"><i class="gold" style="left:34%;width:64%;animation-delay:.7s">转码 · 超分 · 插帧 · 数据资产中心每日归档</i></div>
+        <div class="out"><b>数十小时</b> 素材/晚</div>
+      </div>
+      <div class="timescale"><span>22:00</span><span>00:00</span><span>02:00</span><span>04:00</span><span>06:00</span><span>08:00</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 承压极限 TOP5 ============ -->
+<section class="row" id="limit">
+  <div class="row-head reveal">
+    <span class="chip">TOP 5</span>
+    <h2>承压极限 · 超载时先倒下的是谁</h2>
+    <span class="hint">按倒下顺序排名</span>
+  </div>
+  <div class="track">
+    <div class="card top-card reveal">
+      <div class="top-num">1</div>
+      <div class="top-body"><h3><small>最先倒</small>存储 IO</h3><p>多路 4K 并发读写，瓶颈在盘阵不在 GPU。<b>需补一台 NVMe 存储节点 + 25/100GbE 内网</b>——当前配置最可能缺的一块，优先补。</p></div>
+    </div>
+    <div class="card top-card reveal">
+      <div class="top-num">2</div>
+      <div class="top-body"><h3><small>挤压劣化</small>显存 32GB</h3><p>调色大节点树 / 降噪顶满单卡，分片互相挤压 → 时间线掉帧。规则：<b>重活给整卡，分片只给代理剪辑</b>。</p></div>
+    </div>
+    <div class="card top-card reveal">
+      <div class="top-num">3</div>
+      <div class="top-body"><h3><small>会话上限</small>NVENC 编码器</h3><p>每卡编码会话有限，<b>审片流必须走预转码</b>，否则抢占工作站的画面流编码器——一抢全卡顿。</p></div>
+    </div>
+    <div class="card top-card reveal">
+      <div class="top-num">4</div>
+      <div class="top-body"><h3><small>渐进劣化</small>交互超卖</h3><p>超建议并发 20–30% 表现为卡顿而非宕机——<b>交片日可短时顶峰，别做常态</b>。白天 5090 全留交互，AI 走 H100。</p></div>
+    </div>
+    <div class="card top-card reveal">
+      <div class="top-num">5</div>
+      <div class="top-body"><h3><small>结构风险</small>无冗余</h3><p>各只有一台，任一台宕机当天该类能力<b>清零</b>。缓解：工程文件小时级快照 + 渲染断点续跑 + SLA 不承诺 100%。</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 下一季预告 ============ -->
+<section class="next reveal">
+  <div class="pre">NEXT SEASON · 扩容剧本</div>
+  <h2>每加一台 4×5090，剧情升级一档</h2>
+  <p>+3–4 路 4K 调色 或 +10 路代理剪辑，+每晚 500–1200 渲染帧。<b>后期业务的扩容单元是 5090 服务器</b>；H100 跟着 AI 订单走，两条线解耦。36kW 高密机柜单柜容纳 2–3 台 4×5090——<b>288 柜的天花板，足够把这一季放大两个数量级</b>。</p>
+</section>
+
+<footer><b>JINTAI STUDIO CLOUD</b> · 现役战力档案 · 数字为工程估算区间，以压测为准 · 2026</footer>
+
+<script>
+/* 导航变实 */
+const nav=document.getElementById('nav');
+addEventListener('scroll',()=>{nav.classList.toggle('solid',scrollY>60)});
+
+/* 滚动显现 */
+const io=new IntersectionObserver(es=>{
+  es.forEach(e=>{
+    if(!e.isIntersecting)return;
+    e.target.classList.add('in');
+    e.target.querySelectorAll('.bar i').forEach(b=>{b.style.width=b.dataset.w+'%'});
+    io.unobserve(e.target);
+  });
+},{threshold:.15});
+document.querySelectorAll('.reveal').forEach((el,i)=>{el.style.transitionDelay=(i%5)*80+'ms';io.observe(el)});
+
+/* 数字滚动（开场动画结束后再跑） */
+setTimeout(()=>{
+  document.querySelectorAll('[data-n]').forEach(el=>{
+    const t=+el.dataset.n,suf=el.querySelector('i')?el.querySelector('i').outerHTML:'';
+    const t0=performance.now(),dur=1800;
+    (function step(now){
+      const p=Math.min(1,(now-t0)/dur),e=1-Math.pow(1-p,3);
+      el.innerHTML=Math.round(t*e)+suf;
+      if(p<1)requestAnimationFrame(step);
+    })(t0);
+  });
+},2600);
+</script>
+</body>
+</html>
