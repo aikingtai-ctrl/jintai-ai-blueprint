@@ -42,6 +42,39 @@ body{
 #progress{position:fixed;top:0;left:0;height:3px;width:0;z-index:60;background:linear-gradient(90deg,#b8933f,#f2d489 60%,#57c8f2);box-shadow:0 0 14px rgba(242,212,137,.6)}
 main{position:relative;z-index:1}
 
+/* ===== 鼠标光晕跟随 ===== */
+#cursor-glow{
+  position:fixed;left:0;top:0;width:540px;height:540px;border-radius:50%;
+  pointer-events:none;z-index:2;opacity:0;
+  background:radial-gradient(circle,rgba(217,180,92,.08),rgba(87,200,242,.045) 45%,transparent 70%);
+  transform:translate(-50%,-50%);mix-blend-mode:screen;
+}
+@media(hover:none){#cursor-glow{display:none}}
+
+/* ===== HUD 状态条（打字机） ===== */
+.hud{
+  display:flex;width:fit-content;align-items:center;gap:12px;margin-bottom:26px;padding:10px 20px;border-radius:10px;
+  border:1px solid rgba(87,200,242,.32);background:rgba(87,200,242,.06);
+  backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px);
+  font-family:Consolas,"Courier New",monospace;font-size:14px;letter-spacing:.06em;color:var(--cyan);
+  animation:heroUp 1s .2s both;white-space:nowrap;max-width:100%;overflow:hidden;
+}
+.hud i{flex:none;width:8px;height:8px;border-radius:50%;background:var(--green);animation:pulse 1.6s infinite}
+.hud .cur{flex:none;display:inline-block;width:9px;height:17px;background:var(--cyan);animation:blink 1s steps(1) infinite}
+@keyframes blink{50%{opacity:0}}
+
+/* ===== 章节数字旋转光环 ===== */
+.chap .cn{position:relative;display:inline-block}
+.chap .cn::after{
+  content:"";position:absolute;inset:-16px -24px;border-radius:50%;
+  border:1px dashed rgba(217,180,92,.3);
+  animation:ringSpin 18s linear infinite;
+}
+@keyframes ringSpin{to{transform:rotate(360deg)}}
+#c2 .chap .cn::after{border-color:rgba(87,200,242,.3)}
+#c3 .chap .cn::after{border-color:rgba(177,140,255,.3)}
+#c4 .chap .cn::after{border-color:rgba(111,227,165,.3)}
+
 /* ===== 通用 ===== */
 .wrap{max-width:1140px;margin:0 auto;padding:0 34px}
 section{padding:130px 0;position:relative}
@@ -385,6 +418,7 @@ footer .f-logo{color:var(--gold);font-weight:700;letter-spacing:.3em;margin-bott
 <body>
 
 <div id="progress"></div>
+<div id="cursor-glow"></div>
 <canvas id="grid-canvas"></canvas>
 <div class="aurora a1"></div>
 <div class="aurora a2"></div>
@@ -407,6 +441,7 @@ footer .f-logo{color:var(--gold);font-weight:700;letter-spacing:.3em;margin-bott
 <header class="hero">
   <div class="wrap">
     <div class="hero-tag"><i></i>河北传媒学院 × 金泰智算中心 · AI 智算聚合体</div>
+    <div class="hud"><i></i><span id="hud-text"></span><span class="cur"></span></div>
     <h1>河传 × 金泰<br><span class="gold">智算共同体</span>合作方案</h1>
     <p class="hero-sub">
       不卖算力、不卖 Token——以一流基建与顶级模型聚合，把智算能力做成<b>「一键通」的服务</b>，从河传出发，通向各行各业。
@@ -702,6 +737,7 @@ footer .f-logo{color:var(--gold);font-weight:700;letter-spacing:.3em;margin-bott
   }
   resize();addEventListener('resize',resize);
   let mx=-1e4,my=-1e4;
+  const stars=[];
   addEventListener('mousemove',e=>{mx=e.clientX;my=e.clientY});
   addEventListener('mouseleave',()=>{mx=-1e4;my=-1e4});
   function tick(){
@@ -731,6 +767,27 @@ footer .f-logo{color:var(--gold);font-weight:700;letter-spacing:.3em;margin-bott
         ctx.strokeStyle='rgba(242,212,137,'+(1-d/34000)*.4+')';
         ctx.beginPath();ctx.moveTo(p.x,p.y);ctx.lineTo(mx,my);ctx.stroke();
       }
+    }
+    /* 流星：金/青双色，随机划过 */
+    if(Math.random()<.006&&stars.length<3){
+      stars.push({
+        x:Math.random()*W*.8,y:Math.random()*H*.3,
+        vx:5+Math.random()*5,vy:2.5+Math.random()*2.5,
+        life:1,gold:Math.random()<.6
+      });
+    }
+    for(let i=stars.length-1;i>=0;i--){
+      const s=stars[i];
+      s.x+=s.vx;s.y+=s.vy;s.life-=.012;
+      if(s.life<=0||s.x>W+80||s.y>H+80){stars.splice(i,1);continue;}
+      const grad=ctx.createLinearGradient(s.x-s.vx*12,s.y-s.vy*12,s.x,s.y);
+      const c=s.gold?'242,212,137':'87,200,242';
+      grad.addColorStop(0,'rgba('+c+',0)');
+      grad.addColorStop(1,'rgba('+c+','+(.7*s.life)+')');
+      ctx.strokeStyle=grad;ctx.lineWidth=1.6;
+      ctx.beginPath();ctx.moveTo(s.x-s.vx*12,s.y-s.vy*12);ctx.lineTo(s.x,s.y);ctx.stroke();
+      ctx.beginPath();ctx.arc(s.x,s.y,1.8,0,7);
+      ctx.fillStyle='rgba('+c+','+s.life+')';ctx.fill();
     }
     requestAnimationFrame(tick);
   }
@@ -775,6 +832,56 @@ footer .f-logo{color:var(--gold);font-weight:700;letter-spacing:.3em;margin-bott
       setTimeout(()=>el.style.transition='',600);
     });
   });
+})();
+
+/* ===== 鼠标光晕跟随（惰性平滑） ===== */
+(function(){
+  const glow=document.getElementById('cursor-glow');
+  if(!glow||matchMedia('(hover:none)').matches)return;
+  let tx=-1e4,ty=-1e4,x=-1e4,y=-1e4,on=false;
+  addEventListener('mousemove',e=>{tx=e.clientX;ty=e.clientY;if(!on){on=true;glow.style.opacity=1}});
+  addEventListener('mouseleave',()=>{on=false;glow.style.opacity=0});
+  (function follow(){
+    x+=(tx-x)*.08;y+=(ty-y)*.08;
+    glow.style.left=x+'px';glow.style.top=y+'px';
+    requestAnimationFrame(follow);
+  })();
+})();
+
+/* ===== HUD 打字机状态 ===== */
+(function(){
+  const el=document.getElementById('hud-text');
+  if(!el)return;
+  const msgs=[
+    'SYSTEM ONLINE · 算力集群在线 · GPU 温控正常',
+    'MODEL GATEWAY · 模型网关同步中 · 国内外顶级模型实时更新',
+    'RENDER QUEUE · 渲染队列就绪 · 节点 5090-01 → 04',
+    'H100 CLUSTER · 推理负载均衡中 · 数万人并发承载',
+    'SECURITY · 数据加密域运行正常 · 审计日志写入中'
+  ];
+  let mi=0,ci=0,del=false;
+  (function type(){
+    const m=msgs[mi];
+    if(!del){
+      ci++;el.textContent=m.slice(0,ci);
+      if(ci>=m.length){del=true;setTimeout(type,2400);return}
+      setTimeout(type,38);
+    }else{
+      ci-=3;if(ci<=0){ci=0;del=false;mi=(mi+1)%msgs.length}
+      el.textContent=m.slice(0,ci);
+      setTimeout(type,12);
+    }
+  })();
+})();
+
+/* ===== 极光滚动视差 ===== */
+(function(){
+  const a1=document.querySelector('.aurora.a1'),a2=document.querySelector('.aurora.a2');
+  addEventListener('scroll',()=>{
+    const s=scrollY;
+    if(a1)a1.style.marginTop=s*.06+'px';
+    if(a2)a2.style.marginTop=-s*.045+'px';
+  },{passive:true});
 })();
 </script>
 </body>
