@@ -466,6 +466,63 @@ h1 .gold{background:linear-gradient(100deg,#f6dfa0,var(--gold) 55%,#8d6f2c);back
 .chap .cl{font-size:17px}
 footer{font-size:16.5px}
 
+/* ===== 数据双价值分裂视觉 ===== */
+.split{display:grid;grid-template-columns:1fr 200px 1fr;gap:0;align-items:stretch}
+.split-card{
+  padding:38px 34px;border-radius:var(--radius);
+  background:rgba(255,255,255,.07);border:1px solid var(--line);
+  backdrop-filter:blur(28px) saturate(160%);-webkit-backdrop-filter:blur(28px) saturate(160%);
+  box-shadow:0 12px 40px rgba(0,0,0,.35),inset 0 1px 0 rgba(255,255,255,.14);
+  transition:transform .5s cubic-bezier(.2,.8,.2,1),border-color .5s;
+}
+.split-card:hover{transform:translateY(-4px)}
+.split-card.cli{border-color:rgba(87,200,242,.4)}
+.split-card.cli:hover{border-color:rgba(87,200,242,.7)}
+.split-card.jt{border-color:rgba(217,180,92,.5);background:linear-gradient(170deg,rgba(217,180,92,.08),rgba(255,255,255,.05))}
+.split-card.jt:hover{border-color:rgba(242,212,137,.8)}
+.split-badge{display:inline-block;padding:6px 18px;border-radius:999px;font-size:15px;letter-spacing:.2em;font-weight:800;margin-bottom:20px}
+.cli .split-badge{background:var(--cyan-dim);color:var(--cyan);border:1px solid rgba(87,200,242,.4)}
+.jt .split-badge{background:var(--gold-dim);color:var(--gold-bright);border:1px solid rgba(217,180,92,.45)}
+.split-card h3{font-size:27px;margin-bottom:14px;font-weight:800}
+.split-card ul{list-style:none}
+.split-card li{padding:10px 0 10px 26px;position:relative;color:var(--ink-2);font-size:17px;border-top:1px solid rgba(255,255,255,.06)}
+.split-card li b{color:var(--ink)}
+.cli li::before{content:"◆";position:absolute;left:0;top:12px;font-size:10px;color:var(--cyan)}
+.jt li::before{content:"◆";position:absolute;left:0;top:12px;font-size:10px;color:var(--gold)}
+.split-mid{display:grid;place-items:center;position:relative}
+.split-core{
+  width:152px;height:152px;border-radius:50%;display:grid;place-items:center;text-align:center;
+  border:1px solid rgba(217,180,92,.6);background:rgba(9,13,22,.92);
+  font-size:19px;font-weight:800;color:var(--gold-bright);line-height:1.5;letter-spacing:.1em;
+  animation:corePulse 4s ease-in-out infinite;
+}
+@keyframes corePulse{0%,100%{box-shadow:0 0 26px rgba(217,180,92,.25)}50%{box-shadow:0 0 60px rgba(217,180,92,.55)}}
+.split-mid::before,.split-mid::after{content:"";position:absolute;top:50%;width:calc(50% - 82px);height:2px}
+.split-mid::before{left:0;background:linear-gradient(270deg,transparent,rgba(87,200,242,.6))}
+.split-mid::after{right:0;background:linear-gradient(90deg,transparent,rgba(217,180,92,.6))}
+@media(max-width:880px){.split{grid-template-columns:1fr}.split-mid{padding:28px 0}.split-mid::before,.split-mid::after{display:none}}
+
+/* ===== 行业链接卡 ===== */
+.link-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:16px}
+.lk{padding:32px 28px;overflow:hidden}
+.lk::after{content:"";position:absolute;top:0;left:24px;right:24px;height:3px;border-radius:0 0 4px 4px}
+.lk.g1::after{background:linear-gradient(90deg,rgba(242,212,137,.9),rgba(242,212,137,.1))}
+.lk.g2::after{background:linear-gradient(90deg,rgba(87,200,242,.9),rgba(87,200,242,.1))}
+.lk.g3::after{background:linear-gradient(90deg,rgba(111,227,165,.9),rgba(111,227,165,.1))}
+.lk.g4::after{background:linear-gradient(90deg,rgba(177,140,255,.9),rgba(177,140,255,.1))}
+.lk h3{font-size:22px;margin-bottom:8px}
+.lk p{font-size:16px;color:var(--ink-2)}
+@media(max-width:920px){.link-grid{grid-template-columns:1fr 1fr}}
+@media(max-width:560px){.link-grid{grid-template-columns:1fr}}
+.gate-note{
+  margin-top:28px;padding:24px 32px;border-radius:16px;text-align:center;
+  border:1px solid rgba(111,227,165,.45);
+  background:linear-gradient(90deg,rgba(111,227,165,.1),rgba(111,227,165,.03));
+  backdrop-filter:blur(18px);-webkit-backdrop-filter:blur(18px);
+  font-size:17.5px;color:var(--ink-2);
+}
+.gate-note b{color:var(--green)}
+
 /* ===== 细化区块 ===== */
 .sub-h{display:flex;align-items:center;gap:14px;font-size:26px;font-weight:800;margin:66px 0 26px;letter-spacing:.04em}
 .sub-h::before{content:"";flex:none;width:10px;height:28px;border-radius:3px;background:linear-gradient(180deg,#f2d489,#b8933f);box-shadow:0 0 14px rgba(217,180,92,.45)}
@@ -531,7 +588,7 @@ footer .f-logo{color:var(--gold);font-weight:700;letter-spacing:.3em;margin-bott
       <li><a href="#c1">壹 · 现有底座</a></li>
       <li><a href="#c3">贰 · 河传样板</a></li>
       <li><a href="#c2">叁 · 聚合体构想</a></li>
-      <li><a href="#c4">肆 · 未来平台</a></li>
+      <li><a href="#c4">肆 · 数据与链接</a></li>
       <li><a href="#voyage">启航</a></li>
     </ul>
   </div>
@@ -760,35 +817,43 @@ footer .f-logo{color:var(--gold);font-weight:700;letter-spacing:.3em;margin-bott
 <!-- ============ 第四章 未来平台 ============ -->
 <section id="c4">
   <div class="wrap">
-    <div class="chap reveal"><span class="cn">肆</span><span class="cl">CHAPTER FOUR · 未来平台</span></div>
-    <h2 class="reveal"><span class="nb">AI 服务与智能体的</span><em class="nb">综合平台</em></h2>
-    <p class="lead reveal">不止于大模型应用，<b>要介入专业服务</b>——以<b>完整的体系、专业技术与专业知识</b>，广义服务于各个行业，为各领域 AI 应用提供有偿支持，与世界同步创新，为中国科技提供综合智算体系。</p>
+    <div class="chap reveal"><span class="cn">肆</span><span class="cl">CHAPTER FOUR · 数据资产 × 行业链接</span></div>
+    <h2 class="reveal"><span class="nb">金泰AI数据库：</span><em><span class="nb">一份数据，</span><span class="nb">两份价值</span></em></h2>
+    <p class="lead reveal">建立金泰AI数据库，建立<b>数字资产矩阵</b>——客户的全部生产过程在金泰云内完成，<b>终端零留存</b>，所有过程数据与成果数据唯一沉淀到金泰数据中心。</p>
 
-    <h3 class="sub-h reveal" style="margin-top:0">四位一体 · <em>完整的体系</em></h3>
-    <div class="quad">
-      <div class="q-cell glass reveal"><h3><small>ONE</small>算力底座</h3><p>一流基建与智算体系，稳定供给，随需生长。</p></div>
-      <div class="q-cell glass reveal"><h3><small>TWO</small>模型聚合</h3><p>接入各种模型——世界先进能力统一入口，服务于社会。</p></div>
-      <div class="q-cell glass reveal"><h3><small>THREE</small>专业团队</h3><p>专业技术 × 专业知识——算力团队与高校力量并肩。</p></div>
-      <div class="q-cell glass reveal"><h3><small>FOUR</small>行业服务</h3><p>广义服务各行各业，从模型应用到专业服务全覆盖。</p></div>
+    <div class="split reveal">
+      <div class="split-card cli">
+        <span class="split-badge">对客户 · 安全托管</span>
+        <h3>数据不落地</h3>
+        <ul>
+          <li><b>终端零留存</b>：剧本、成片、物料不散落任何个人设备</li>
+          <li><b>全链路审计</b>：谁在何时用什么模型产出了什么，全程可查</li>
+          <li><b>资产不随人走</b>：人员流动，工程与素材完整留存</li>
+          <li><b>生成即存证</b>：时间戳 · 操作链 · 版权登记对接</li>
+        </ul>
+      </div>
+      <div class="split-mid"><div class="split-core">同一份<br>数据</div></div>
+      <div class="split-card jt">
+        <span class="split-badge">对金泰 · 资产沉淀</span>
+        <h3>数字资产矩阵</h3>
+        <ul>
+          <li><b>客户锁定</b>：数据引力，合作越久越不可替代</li>
+          <li><b>生产资料复用</b>：模板 · 素材库 · 工作流持续增值</li>
+          <li><b>数据资产化</b>：确权 · 评估 · 入表，融资叙事的资产池</li>
+          <li><b>体系迭代</b>：结合自身内容持续优化平台能力</li>
+        </ul>
+      </div>
     </div>
+    <p class="chap-note reveal">两份价值来自<b>同一份数据</b>，但归属完全不同——<b>这是后面所有分析的基础</b>。</p>
 
-    <div class="future-list">
-      <div class="fl glass reveal"><h3><b>一对一</b>链条服务体系</h3><p>每个客户一条专属服务链——需求分析、方案设计、模型配置、落地陪跑，全程贯通到交付。</p></div>
-      <div class="fl glass reveal"><h3>分支脉络 · <b>高校优势</b></h3><p>各分支充分发挥高等院校的科研与人才优势，边研究、边服务、边生长——研究院就是发动机。</p></div>
-      <div class="fl glass reveal"><h3>与世界<b>同步创新</b></h3><p>模型迭代到哪里，平台就跟进到哪里；探索到哪里，服务就延伸到哪里——指日可待。</p></div>
+    <h3 class="sub-h reveal">打造模式 · <em>行业算力需求链接</em></h3>
+    <div class="link-grid">
+      <div class="lk glass reveal g1"><h3>央视 · 媒体</h3><p>栏目组内容生产，全链路审计报告随片交付，未播内容零外泄。</p></div>
+      <div class="lk glass reveal g2"><h3>政企 · 事业单位</h3><p>宣传与政务内容生产线，安全托管本身就是采购理由。</p></div>
+      <div class="lk glass reveal g3"><h3>医药</h3><p>科普 · 培训 · 学术可视化，数据脱敏前置，专属域交付。</p></div>
+      <div class="lk glass reveal g4"><h3>金融</h3><p>投教内容 · 品牌视频 · 数据可视化，合规审计一键导出。</p></div>
     </div>
-
-    <h3 class="sub-h reveal">有偿服务 · <em>面向各领域的 AI 应用支持</em></h3>
-    <div class="chip-row reveal">
-      <span><b>影视传媒</b> 制作与发行</span>
-      <span><b>教育</b> 课程与实训</span>
-      <span><b>文旅</b> 内容与体验</span>
-      <span><b>政企</b> 宣传与政务内容</span>
-      <span><b>医疗</b> 科普与培训</span>
-      <span><b>金融</b> 投教与可视化</span>
-      <span><b>高科技平台</b> 算力协作</span>
-      <span><b>更多行业</b> 持续接入</span>
-    </div>
+    <div class="gate-note reveal">凡有算力与模型需求者——经金泰审核，<b>分类分领域接入</b>金泰智算体系；<b>合规合法，是准入的第一道门</b>。</div>
 
     <div class="creed green reveal" style="margin:60px 0 0">
       <h3>不单单是互联，是智算能力<b>「一键通」</b></h3>
