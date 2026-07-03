@@ -160,6 +160,27 @@ h1 .gold{background:linear-gradient(100deg,#f6dfa0,var(--gold) 55%,#8d6f2c);back
 .chap-note{margin-top:44px;text-align:center;color:var(--ink-2);font-size:19px}
 .chap-note b{color:var(--gold-bright)}
 
+/* 模型阵容跑马灯 */
+.marquee{
+  margin-top:28px;overflow:hidden;position:relative;padding:20px 0;
+  border-top:1px solid rgba(255,255,255,.09);border-bottom:1px solid rgba(255,255,255,.09);
+  -webkit-mask-image:linear-gradient(90deg,transparent,#000 8%,#000 92%,transparent);
+  mask-image:linear-gradient(90deg,transparent,#000 8%,#000 92%,transparent);
+}
+.marquee .m-label{position:absolute;top:-11px;left:50%;transform:translateX(-50%);font-size:12px;letter-spacing:.35em;color:var(--gold);font-weight:800;background:var(--bg);padding:0 16px;white-space:nowrap}
+.mtrack{display:flex;gap:14px;width:max-content;animation:marq 30s linear infinite}
+.marquee:hover .mtrack{animation-play-state:paused}
+@keyframes marq{from{transform:translateX(0)}to{transform:translateX(-50%)}}
+.mtrack span{
+  flex:none;font-size:17px;font-weight:700;letter-spacing:.06em;color:var(--ink-2);
+  border:1px solid var(--line);background:rgba(255,255,255,.05);
+  backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);
+  padding:10px 26px;border-radius:999px;transition:border-color .3s,color .3s;
+}
+.mtrack span:hover{border-color:rgba(217,180,92,.6);color:var(--gold-bright)}
+.mtrack span b{color:var(--gold-bright);font-weight:800}
+.mtrack span.cy b{color:var(--cyan)}
+
 /* ===== 第二章 三支柱 ===== */
 .creed{
   margin:0 0 54px;padding:40px 44px;border-radius:var(--radius);text-align:center;
@@ -377,10 +398,31 @@ footer .f-logo{color:var(--gold);font-weight:700;letter-spacing:.3em;margin-bott
         <p>按 1 元/秒测算：1080P 每天约可生成 <b style="color:var(--gold-bright)">2.28 小时</b>；Seedance 2.5 原生 4K（30 秒/条）约每天 <b style="color:var(--gold-bright)">274 条</b>，若 4K 按 4 元/秒约每天 <b style="color:var(--gold-bright)">68 条</b>——以火山企业合同单价为准。</p>
       </div>
       <div class="fact glass reveal wide">
-        <div class="fk"><small>TEAM · 护航力量</small><span class="nb">可应对 6 组专业团队</span><span class="nb">满负荷算力支持</span></div>
-        <p>强大的后台维护团队全程护航，算力体系可同时应对六组专业团队的满负荷使用——机器之上，是人的体系。</p>
+        <div class="fk"><small>STUDIO · 云上制片车间</small><span class="nb">4K 远程剪辑</span> · <span class="nb">渲染农场</span></div>
+        <p>剪辑、调色、特效、渲染全部在云端完成，<b style="color:var(--gold-bright)">素材不出机房、终端零留存</b>——剪辑师在任何地方接入同一个片场。</p>
+      </div>
+      <div class="fact glass reveal wide">
+        <div class="fk"><small>OPS · 生产不中断</small><span class="nb">7×24 双线护航</span></div>
+        <p>后台维护团队与算力专家团队全天候值守，体系可同时支撑 <b style="color:var(--gold-bright)">6 组专业团队满负荷生产</b>——机器之上，是人的体系。</p>
+      </div>
+      <div class="fact glass reveal wide">
+        <div class="fk"><small>SECURITY · 安全合规</small><span class="nb">全链路可审计</span></div>
+        <p>数据不落地、生成即存证，谁在何时用什么模型产出了什么，<b style="color:var(--gold-bright)">审计报告一键导出</b>——政企级信任从这里开始。</p>
+      </div>
+      <div class="fact glass reveal wide">
+        <div class="fk"><small>SCALE · 弹性生长</small><span class="nb">按需扩容 · 随单上架</span></div>
+        <p>机柜与电力早已就位，算力跟着业务订单生长——<b style="color:var(--gold-bright)">今天够用，明天不设上限</b>。</p>
       </div>
     </div>
+
+    <div class="marquee reveal">
+      <span class="m-label">MODELS · 国内外顶级模型 实时更新接入</span>
+      <div class="mtrack">
+        <span><b>GPT</b> 系列</span><span class="cy"><b>Gemini</b></span><span><b>DeepSeek</b></span><span class="cy"><b>Qwen</b> 通义</span><span><b>GLM</b> 智谱</span><span class="cy"><b>Kimi</b></span><span><b>豆包</b></span><span class="cy"><b>SEEDANCE</b> 视频</span><span><b>KLING</b> 可灵</span><span class="cy"><b>Wan</b> 万相</span><span><b>FLUX</b> 图像</span><span class="cy"><b>持续更新中 +</b></span>
+        <span><b>GPT</b> 系列</span><span class="cy"><b>Gemini</b></span><span><b>DeepSeek</b></span><span class="cy"><b>Qwen</b> 通义</span><span><b>GLM</b> 智谱</span><span class="cy"><b>Kimi</b></span><span><b>豆包</b></span><span class="cy"><b>SEEDANCE</b> 视频</span><span><b>KLING</b> 可灵</span><span class="cy"><b>Wan</b> 万相</span><span><b>FLUX</b> 图像</span><span class="cy"><b>持续更新中 +</b></span>
+      </div>
+    </div>
+
     <p class="chap-note reveal">底座的意义只有一个：<b>让上层的服务永远不必担心根基。</b></p>
   </div>
 </section>
