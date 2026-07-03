@@ -501,6 +501,88 @@ h2 em,h1 .gold{background-size:200% auto;animation:shimmer 5s linear infinite}
 .studio-card .icon,.bb-card .icon,.ind .icon{animation:iconBob 5s ease-in-out infinite}
 .tilt{transform-style:preserve-3d;will-change:transform}
 .tilt:hover{transition:transform .08s linear}
+
+/* ============================================================
+   增强层 v3：层级规整排版 · 色彩体系深化
+   ============================================================ */
+section{padding:120px 0;position:relative}
+
+/* 章节色浪背景：每步一色，滚到哪一步一眼可辨 */
+#s1{background:radial-gradient(72% 58% at 85% 0%,rgba(217,180,92,.075),transparent 62%)}
+#s2{background:radial-gradient(72% 58% at 15% 0%,rgba(87,200,242,.075),transparent 62%)}
+#s3{background:radial-gradient(72% 58% at 85% 0%,rgba(177,140,255,.075),transparent 62%)}
+#s4{background:radial-gradient(72% 58% at 15% 0%,rgba(217,180,92,.09),transparent 62%)}
+#s5{background:radial-gradient(72% 58% at 85% 0%,rgba(111,227,165,.075),transparent 62%)}
+#roadmap{background:radial-gradient(72% 58% at 50% 0%,rgba(87,200,242,.055),transparent 62%)}
+
+/* 章节分隔发丝线 */
+#s1::before,#s2::before,#s3::before,#s4::before,#s5::before,#roadmap::before{
+  content:"";position:absolute;top:0;left:8%;right:8%;height:1px;
+  background:linear-gradient(90deg,transparent,rgba(255,255,255,.16),transparent);
+}
+
+/* 标题区层级：步骤号 | 竖线 | 标签 → 主标题 → 色条 → 导语（左色线） */
+.step-mark{align-items:center;gap:22px;margin-bottom:14px}
+.step-mark .sl{padding-left:22px;border-left:1px solid rgba(255,255,255,.2);line-height:2}
+h2{position:relative;padding-bottom:22px;margin-bottom:20px}
+h2::after{content:"";position:absolute;left:2px;bottom:0;width:92px;height:4px;border-radius:2px;background:linear-gradient(90deg,var(--gold-bright),var(--gold),transparent)}
+#s2 h2::after{background:linear-gradient(90deg,#c3ecff,var(--cyan),transparent)}
+#s3 h2::after{background:linear-gradient(90deg,#ddccff,var(--violet),transparent)}
+#s5 h2::after{background:linear-gradient(90deg,#b6f2d2,var(--green),transparent)}
+.lead{border-left:3px solid rgba(217,180,92,.55);padding-left:22px}
+#s2 .lead{border-left-color:rgba(87,200,242,.55)}
+#s3 .lead{border-left-color:rgba(177,140,255,.55)}
+#s5 .lead{border-left-color:rgba(111,227,165,.55)}
+
+/* 子标题统一挂金色竖牌 */
+.sub-h{display:flex;align-items:center;gap:14px}
+.sub-h::before{content:"";flex:none;width:10px;height:28px;border-radius:3px;background:linear-gradient(180deg,#f2d489,#b8933f);box-shadow:0 0 14px rgba(217,180,92,.45)}
+
+/* 卡片顶部主题色饰条：层级与色彩一次到位 */
+.chain-node::after,.studio-card::after,.lane-node::after,.bb-card::after,.ind::after,.tier::after,.own::after,.split-card::after,.phase-card::after{
+  content:"";position:absolute;top:0;left:26px;right:26px;height:3px;border-radius:0 0 4px 4px;
+  background:linear-gradient(90deg,rgba(242,212,137,.9),rgba(217,180,92,.12));
+}
+.lane-node.cy-b::after,.split-card.cli::after,.tier.t1::after,.own.o1::after,
+.ind:nth-child(2)::after,.ind:nth-child(3)::after{
+  background:linear-gradient(90deg,rgba(87,200,242,.9),rgba(87,200,242,.1));
+}
+#s3 .bb-card::after{background:linear-gradient(90deg,rgba(177,140,255,.9),rgba(177,140,255,.1))}
+.ind:nth-child(4)::after{background:linear-gradient(90deg,rgba(111,227,165,.9),rgba(111,227,165,.1))}
+.ind:nth-child(5)::after{background:linear-gradient(90deg,rgba(177,140,255,.9),rgba(177,140,255,.1))}
+.tier.t3::after{background:linear-gradient(90deg,rgba(255,255,255,.4),rgba(255,255,255,.06))}
+
+/* Hero 统计卡四色编码 */
+.stats .stat:nth-child(2) .num{color:var(--cyan)}
+.stats .stat:nth-child(3) .num{color:var(--violet)}
+.stats .stat:nth-child(4) .num{color:var(--green)}
+.stats .stat:nth-child(2) .num small{color:var(--cyan)}
+.stats .stat:nth-child(3) .num small{color:var(--violet)}
+.stats .stat:nth-child(4) .num small{color:var(--green)}
+.stat{overflow:hidden}
+.stat::after{content:"";position:absolute;top:0;left:0;right:0;height:3px;background:linear-gradient(90deg,var(--gold-bright),transparent)}
+.stats .stat:nth-child(2)::after{background:linear-gradient(90deg,var(--cyan),transparent)}
+.stats .stat:nth-child(3)::after{background:linear-gradient(90deg,var(--violet),transparent)}
+.stats .stat:nth-child(4)::after{background:linear-gradient(90deg,var(--green),transparent)}
+
+/* 五步轨道卡顶部色条 */
+.rail a{overflow:hidden}
+.rail a::after{content:"";position:absolute;top:0;left:0;right:0;height:3px;background:linear-gradient(90deg,var(--gold-bright),transparent)}
+.rail a:nth-child(2)::after{background:linear-gradient(90deg,var(--cyan),transparent)}
+.rail a:nth-child(3)::after{background:linear-gradient(90deg,var(--violet),transparent)}
+.rail a:nth-child(4)::after{background:linear-gradient(90deg,var(--gold-bright),transparent)}
+.rail a:nth-child(5)::after{background:linear-gradient(90deg,var(--green),transparent)}
+
+/* 导航五步悬停各归其色 */
+nav ul li:nth-child(1) a:hover{color:var(--gold-bright)}
+nav ul li:nth-child(2) a:hover{color:var(--cyan)}
+nav ul li:nth-child(3) a:hover{color:var(--violet)}
+nav ul li:nth-child(4) a:hover{color:var(--gold-bright)}
+nav ul li:nth-child(5) a:hover{color:var(--green)}
+
+/* 页脚彩虹发丝线 */
+footer{border-top:none;position:relative}
+footer::before{content:"";position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(90deg,transparent,var(--gold) 25%,var(--cyan) 45%,var(--violet) 65%,var(--green) 85%,transparent)}
 </style>
 </head>
 <body>
