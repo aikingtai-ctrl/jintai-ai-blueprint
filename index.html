@@ -243,6 +243,51 @@ h1 .gold{background:linear-gradient(100deg,#f6dfa0,var(--gold) 55%,#8d6f2c);back
 .finale p{font-size:20px;color:var(--ink-2);max-width:720px;margin:0 auto;position:relative;z-index:1;text-wrap:pretty}
 .finale p b{color:var(--gold-bright)}
 
+/* ===== 细化区块 ===== */
+.sub-h{display:flex;align-items:center;gap:14px;font-size:26px;font-weight:800;margin:66px 0 26px;letter-spacing:.04em}
+.sub-h::before{content:"";flex:none;width:10px;height:28px;border-radius:3px;background:linear-gradient(180deg,#f2d489,#b8933f);box-shadow:0 0 14px rgba(217,180,92,.45)}
+.sub-h em{font-style:normal;color:var(--gold-bright);white-space:nowrap}
+#c2 .sub-h::before{background:linear-gradient(180deg,#c3ecff,#2a8ab5);box-shadow:0 0 14px rgba(87,200,242,.45)}
+#c2 .sub-h em{color:var(--cyan)}
+#c3 .sub-h::before{background:linear-gradient(180deg,#ddccff,#8a63d8);box-shadow:0 0 14px rgba(177,140,255,.45)}
+#c3 .sub-h em{color:var(--violet)}
+#c4 .sub-h::before{background:linear-gradient(180deg,#b6f2d2,#2f9e66);box-shadow:0 0 14px rgba(111,227,165,.45)}
+#c4 .sub-h em{color:var(--green)}
+
+.svc-row{display:grid;grid-template-columns:repeat(4,1fr);gap:16px}
+.svc{padding:28px 26px;overflow:hidden}
+.svc::after{content:"";position:absolute;top:0;left:24px;right:24px;height:3px;border-radius:0 0 4px 4px;background:linear-gradient(90deg,rgba(87,200,242,.9),rgba(87,200,242,.1))}
+.svc h4{font-size:19px;margin-bottom:8px}
+.svc p{font-size:14.5px;color:var(--ink-2)}
+@media(max-width:880px){.svc-row{grid-template-columns:1fr 1fr}}
+@media(max-width:560px){.svc-row{grid-template-columns:1fr}}
+
+.prax-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+.prax{padding:30px 28px;overflow:hidden}
+.prax::after{content:"";position:absolute;top:0;left:24px;right:24px;height:3px;border-radius:0 0 4px 4px;background:linear-gradient(90deg,rgba(177,140,255,.9),rgba(177,140,255,.1))}
+.prax .pn{font-size:13px;letter-spacing:.25em;color:var(--violet);font-weight:800;margin-bottom:10px}
+.prax h3{font-size:20.5px;margin-bottom:8px}
+.prax p{font-size:15px;color:var(--ink-2)}
+.prax p b{color:var(--ink)}
+@media(max-width:880px){.prax-grid{grid-template-columns:1fr}}
+
+.edu-band{
+  margin-top:56px;padding:40px 42px;border-radius:var(--radius);
+  border:1px solid rgba(177,140,255,.4);
+  background:linear-gradient(170deg,rgba(177,140,255,.09),rgba(255,255,255,.04));
+  backdrop-filter:blur(24px);-webkit-backdrop-filter:blur(24px);
+}
+.edu-band h3{font-size:24px;margin-bottom:10px}
+.edu-band h3 b{color:var(--violet)}
+.edu-band p{font-size:16.5px;color:var(--ink-2);max-width:920px}
+.edu-band p b{color:var(--ink)}
+.chip-row{display:flex;gap:12px;flex-wrap:wrap;margin-top:22px}
+.chip-row span{font-size:14.5px;letter-spacing:.08em;color:var(--ink-2);border:1px solid var(--line);background:rgba(5,7,12,.5);padding:7px 18px;border-radius:999px;transition:border-color .3s,color .3s}
+.chip-row span:hover{border-color:rgba(177,140,255,.55);color:var(--ink)}
+.chip-row span b{color:var(--violet);font-weight:700}
+#c4 .chip-row span b{color:var(--green)}
+#c4 .chip-row span:hover{border-color:rgba(111,227,165,.55)}
+
 footer{padding:58px 0 50px;text-align:center;color:var(--ink-3);font-size:15px;letter-spacing:.15em;position:relative}
 footer::before{content:"";position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(90deg,transparent,var(--gold) 25%,var(--cyan) 45%,var(--violet) 65%,var(--green) 85%,transparent)}
 footer .f-logo{color:var(--gold);font-weight:700;letter-spacing:.3em;margin-bottom:10px;font-size:16px}
@@ -309,7 +354,7 @@ footer .f-logo{color:var(--gold);font-weight:700;letter-spacing:.3em;margin-bott
       </div>
       <div class="fact glass reveal">
         <div class="fk"><small>RACKS · 双用体系</small>66 台 12kW</div>
-        <p>智算与存储双用，灵活调配，随业务生长。</p>
+        <p>智算与存储双用，灵活调配——生产数据与数字资产就地沉淀。</p>
       </div>
       <div class="fact glass reveal">
         <div class="fk"><small>FACILITY · 一流基建</small>电力 · 散热</div>
@@ -317,7 +362,7 @@ footer .f-logo{color:var(--gold);font-weight:700;letter-spacing:.3em;margin-bott
       </div>
       <div class="fact glass reveal">
         <div class="fk"><small>COMPUTE · 现役系统</small>4×5090 + 8×H100</div>
-        <p>智算系统现已满足数万人同时应用。</p>
+        <p>生成、推理、渲染同池支撑，现已满足数万人同时应用。</p>
       </div>
       <div class="fact glass reveal wide">
         <div class="fk"><small>TEAM · 护航力量</small><span class="nb">可应对 6 组专业团队</span><span class="nb">满负荷算力支持</span></div>
@@ -357,6 +402,14 @@ footer .f-logo{color:var(--gold);font-weight:700;letter-spacing:.3em;margin-bott
         <p>面向<b>各界算力需求单位与高科技平台</b>，提供的是解决方案与陪伴式服务，不是资源转售。</p>
       </div>
     </div>
+
+    <h3 class="sub-h reveal">平台之上 · <em>四类核心服务</em></h3>
+    <div class="svc-row">
+      <div class="svc glass reveal"><h4>顶级模型调用</h4><p>文本 · 图像 · 视频 · 语音，世界先进模型聚合接入，按客户类型分级放行。</p></div>
+      <div class="svc glass reveal"><h4>云上制作</h4><p>远程剪辑 · 调色 · 特效 · 渲染农场——素材不出机房，终端只收画面流。</p></div>
+      <div class="svc glass reveal"><h4>智能体开发</h4><p>面向行业场景的智能体搭建、调试与托管运行，从工具到"数字同事"。</p></div>
+      <div class="svc glass reveal"><h4>数据与资产托管</h4><p>生产数据安全沉淀、确权存证、全程可审计，数字资产就地成库。</p></div>
+    </div>
   </div>
 </section>
 
@@ -365,14 +418,63 @@ footer .f-logo{color:var(--gold);font-weight:700;letter-spacing:.3em;margin-bott
   <div class="wrap">
     <div class="chap reveal"><span class="cn">叁</span><span class="cl">CHAPTER THREE · 河传样板</span></div>
     <h2 class="reveal"><span class="nb">与河北传媒学院，</span><em class="nb">共建一个样板</em></h2>
-    <p class="lead reveal">把我们的资源分享给河传——是一家人，实事求是。<b>河传有专业底蕴、教学科研优势与外延能力</b>；我们有体系、算力与平台。</p>
+    <p class="lead reveal">把我们的资源分享给河传——是一家人，实事求是。<b>河传有专业底蕴、完整的传媒教育体系与外延能力</b>；我们有体系、算力与平台。河传基于金泰平台实施各项教学实践，<b>全流程落地，产出专业高效的影视作品</b>。</p>
 
     <div class="j-flow reveal"></div>
     <div class="journey reveal">
-      <div class="jstep glass"><div class="jn">1</div><h3>资源分享</h3><p>算力、模型、平台全面开放给河传，拿来即用。</p></div>
-      <div class="jstep glass"><div class="jn">2</div><h3>能力提升</h3><p>教学、科研、工程全面支持，学习创新，持续产出。</p></div>
-      <div class="jstep glass"><div class="jn">3</div><h3>全国样板</h3><p>河传有了这个能力，就是中国高校中最大的 AI 应用基地。</p></div>
-      <div class="jstep glass"><div class="jn">4</div><h3>共建研究院</h3><p>共同开发研究院——智能体的智能平台，从这里启航。</p></div>
+      <div class="jstep glass"><div class="jn">1</div><h3>资源分享</h3><p>算力、顶级模型、制作管线与平台全面向河传开放——拿来即用，零门槛接入。</p></div>
+      <div class="jstep glass"><div class="jn">2</div><h3>能力提升</h3><p>教学、科研、工程全面支持——课堂接入真实生产环境，学习、创新、产出一体。</p></div>
+      <div class="jstep glass"><div class="jn">3</div><h3>全国样板</h3><p>河传有了这个能力，就是中国高校中最大的 AI 应用基地——被验证的样板。</p></div>
+      <div class="jstep glass"><div class="jn">4</div><h3>共建研究院</h3><p>共同开发研究院，探索智能体的智能平台——共同体的旗舰从这里启航。</p></div>
+    </div>
+
+    <h3 class="sub-h reveal">基于金泰平台的<em>教学实践矩阵</em></h3>
+    <div class="prax-grid">
+      <div class="prax glass reveal">
+        <div class="pn">PRACTICE 01</div>
+        <h3>AIGC 创作实训</h3>
+        <p>剧本 → 分镜 → AI 生成 → 成片，顶级视频模型满级创作——<b>课堂即片场</b>，作业即作品。</p>
+      </div>
+      <div class="prax glass reveal">
+        <div class="pn">PRACTICE 02</div>
+        <h3>云上后期实训</h3>
+        <p>远程剪辑工作站直入课堂：剪辑、调色、特效在真实生产环境完成，<b>学的就是行业正在用的</b>。</p>
+      </div>
+      <div class="prax glass reveal">
+        <div class="pn">PRACTICE 03</div>
+        <h3>工业级制作管线</h3>
+        <p>渲染农场与全流程工作流编排进教学——学生毕业时已经<b>跑过完整的工业管线</b>。</p>
+      </div>
+      <div class="prax glass reveal">
+        <div class="pn">PRACTICE 04</div>
+        <h3>科研与工程实践</h3>
+        <p>基于平台开展课题研究与智能体开发，<b>产学研在同一个环境里发生</b>，成果直接可用。</p>
+      </div>
+      <div class="prax glass reveal">
+        <div class="pn">PRACTICE 05</div>
+        <h3>全流程落地产出</h3>
+        <p>精品短剧、纪录片、广告、栏目包装——从创意到成片到发行，<b>专业高效的影视作品实际产出</b>。</p>
+      </div>
+      <div class="prax glass reveal">
+        <div class="pn">PRACTICE 06</div>
+        <h3>作品孵化与确权</h3>
+        <p>优秀师生作品生成即存证、进入发行渠道——<b>人才与 IP 双沉淀</b>，学习成果变成真实履历。</p>
+      </div>
+    </div>
+
+    <div class="edu-band reveal">
+      <h3>河传教育体系 × 金泰平台 = <b>更广阔的空间</b></h3>
+      <p>编导、摄影、播音主持、动画与数字媒体、音乐……河传<b>完整的传媒教育体系与师资科研资源</b>，叠加金泰的算力、模型与制作管线——能开发的远不止影视：</p>
+      <div class="chip-row">
+        <span><b>精品短剧</b> 全流程产出</span>
+        <span><b>纪录片</b> 策划到成片</span>
+        <span><b>广告 · 栏目包装</b></span>
+        <span><b>教育课程内容</b></span>
+        <span><b>文旅宣传</b></span>
+        <span><b>政企内容服务</b></span>
+        <span><b>行业培训</b></span>
+        <span><b>产学研课题</b></span>
+      </div>
     </div>
 
     <div class="why reveal">
@@ -400,9 +502,21 @@ footer .f-logo{color:var(--gold);font-weight:700;letter-spacing:.3em;margin-bott
     </div>
 
     <div class="future-list">
-      <div class="fl glass reveal"><h3><b>一对一</b>链条服务体系</h3><p>每个客户一条专属服务链，从需求到落地全程贯通。</p></div>
-      <div class="fl glass reveal"><h3>分支脉络 · <b>高校优势</b></h3><p>各分支充分发挥高等院校的科研与人才优势，边研究、边服务、边生长。</p></div>
-      <div class="fl glass reveal"><h3>与世界<b>同步创新</b></h3><p>与时俱进、整体推进，探索到哪里，服务就延伸到哪里——指日可待。</p></div>
+      <div class="fl glass reveal"><h3><b>一对一</b>链条服务体系</h3><p>每个客户一条专属服务链——需求分析、方案设计、模型配置、落地陪跑，全程贯通到交付。</p></div>
+      <div class="fl glass reveal"><h3>分支脉络 · <b>高校优势</b></h3><p>各分支充分发挥高等院校的科研与人才优势，边研究、边服务、边生长——研究院就是发动机。</p></div>
+      <div class="fl glass reveal"><h3>与世界<b>同步创新</b></h3><p>模型迭代到哪里，平台就跟进到哪里；探索到哪里，服务就延伸到哪里——指日可待。</p></div>
+    </div>
+
+    <h3 class="sub-h reveal">有偿服务 · <em>面向各领域的 AI 应用支持</em></h3>
+    <div class="chip-row reveal">
+      <span><b>影视传媒</b> 制作与发行</span>
+      <span><b>教育</b> 课程与实训</span>
+      <span><b>文旅</b> 内容与体验</span>
+      <span><b>政企</b> 宣传与政务内容</span>
+      <span><b>医疗</b> 科普与培训</span>
+      <span><b>金融</b> 投教与可视化</span>
+      <span><b>高科技平台</b> 算力协作</span>
+      <span><b>更多行业</b> 持续接入</span>
     </div>
   </div>
 </section>
@@ -501,7 +615,7 @@ footer .f-logo{color:var(--gold);font-weight:700;letter-spacing:.3em;margin-bott
 /* ===== 卡片 3D 倾斜 ===== */
 (function(){
   if(matchMedia('(hover:none)').matches)return;
-  const sel='.fact,.pillar,.jstep,.q-cell,.fl,.hstat';
+  const sel='.fact,.pillar,.jstep,.q-cell,.fl,.hstat,.svc,.prax';
   document.querySelectorAll(sel).forEach(el=>{
     el.classList.add('tilt');
     el.addEventListener('mousemove',e=>{
