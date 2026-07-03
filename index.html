@@ -583,6 +583,28 @@ nav ul li:nth-child(5) a:hover{color:var(--green)}
 /* 页脚彩虹发丝线 */
 footer{border-top:none;position:relative}
 footer::before{content:"";position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(90deg,transparent,var(--gold) 25%,var(--cyan) 45%,var(--violet) 65%,var(--green) 85%,transparent)}
+
+/* ============================================================
+   增强层 v4：排版规矩 · 断行控制 · 语流顺畅
+   ============================================================ */
+h2{text-wrap:balance}
+.lead{text-wrap:pretty}
+.nb{white-space:nowrap}
+
+/* 五步轨道卡：标题一行、副题一行，各归其位 */
+.rail a{padding:20px 12px 18px}
+.rail a .rn{margin-bottom:8px}
+.rail a .rt{display:block;white-space:nowrap;letter-spacing:.02em;font-size:17.5px}
+.rail a .rd{display:block;margin-top:6px;white-space:nowrap}
+@media(max-width:1100px){.rail a .rt{font-size:16px}}
+
+/* 子标题两级结构：标题行 + 说明行 */
+.sub-h{align-items:flex-start}
+.sub-h::before{margin-top:6px}
+.sh-col{display:flex;flex-direction:column;gap:6px;min-width:0}
+.sh-t{line-height:1.4}
+.sh-t em{white-space:nowrap}
+.sh-n{font-size:16.5px;color:var(--ink-2);font-weight:400;letter-spacing:.04em;line-height:1.65;text-wrap:pretty}
 </style>
 </head>
 <body>
@@ -622,7 +644,7 @@ footer::before{content:"";position:absolute;top:0;left:0;right:0;height:2px;back
     <div class="step-rail">
       <div class="rail-flow"></div>
       <div class="rail">
-        <a class="glass" href="#s1"><span class="rn">STEP 01</span><span class="rt">基建 → 平台 → 管线</span><span class="rd">三层价值链</span></a>
+        <a class="glass" href="#s1"><span class="rn">STEP 01</span><span class="rt">基建→平台→管线</span><span class="rd">三层价值链</span></a>
         <a class="glass" href="#s2"><span class="rn">STEP 02</span><span class="rt">河传共创双轨</span><span class="rd">人才与内容引擎</span></a>
         <a class="glass" href="#s3"><span class="rn">STEP 03</span><span class="rt">算力制作管线</span><span class="rd">渲染 × 远程剪辑</span></a>
         <a class="glass" href="#s4"><span class="rn">STEP 04</span><span class="rt">数据资产矩阵</span><span class="rd">一份数据 · 两份价值</span></a>
@@ -644,7 +666,7 @@ footer::before{content:"";position:absolute;top:0;left:0;right:0;height:2px;back
 <section id="s1">
   <div class="wrap">
     <div class="step-mark reveal"><span class="sn">01</span><span class="sl">STEP ONE · 三层价值链</span></div>
-    <h2 class="reveal">算力与专线 → 金泰AI平台 → <em>行业生产管线</em></h2>
+    <h2 class="reveal"><span class="nb">算力与专线</span> → <span class="nb">金泰AI平台</span> → <em class="nb">行业生产管线</em></h2>
     <p class="lead reveal">每一层只为上一层服务，收入来自最上层。<b>基建是入场券，管线是利润池</b>——对外叙事：垂直行业合规 AIGC 生产基地。</p>
 
     <div class="chain-flow reveal"></div>
@@ -691,7 +713,7 @@ footer::before{content:"";position:absolute;top:0;left:0;right:0;height:2px;back
 <section id="s2">
   <div class="wrap">
     <div class="step-mark reveal"><span class="sn">02</span><span class="sl">STEP TWO · 人才与内容引擎</span></div>
-    <h2 class="reveal">河北传媒学院：<em>全流程专业人员 × 持续内容产出</em></h2>
+    <h2 class="reveal"><span class="nb">河北传媒学院：</span><em><span class="nb">全流程专业人员</span> × <span class="nb">持续内容产出</span></em></h2>
     <p class="lead reveal">学校提供活的生产力与源源不断的内容，金泰提供算力、平台与管线。<b>金泰商业内容与学校教学内容同期规划、同期实施</b>——一套管线，两条产线。</p>
 
     <div class="lane-title gd reveal"><i></i>金泰产线 · 商业内容</div>
@@ -720,7 +742,7 @@ footer::before{content:"";position:absolute;top:0;left:0;right:0;height:2px;back
 <section id="s3">
   <div class="wrap">
     <div class="step-mark reveal"><span class="sn">03</span><span class="sl">STEP THREE · 算力制作管线</span></div>
-    <h2 class="reveal">专业后台护航：<em>渲染 × 远程剪辑</em>满格支持</h2>
+    <h2 class="reveal"><span class="nb">专业后台护航：</span><em class="nb">渲染 × 远程剪辑</em><span class="nb">满格支持</span></h2>
     <p class="lead reveal">依托<b>中国移动</b>与算力中心专业后台维护团队的双重保障，搭建专业算力制作管线——影视后期剪辑与商业影视项目的强大渲染、远程剪辑与渲染制作能力。</p>
 
     <div class="backbone">
@@ -793,7 +815,7 @@ footer::before{content:"";position:absolute;top:0;left:0;right:0;height:2px;back
 <section id="s4">
   <div class="wrap">
     <div class="step-mark reveal"><span class="sn">04</span><span class="sl">STEP FOUR · 数据资产矩阵</span></div>
-    <h2 class="reveal">金泰AI数据库：<em>一份数据，两份价值</em></h2>
+    <h2 class="reveal"><span class="nb">金泰AI数据库：</span><em><span class="nb">一份数据，</span><span class="nb">两份价值</span></em></h2>
     <p class="lead reveal">客户的全部生产过程在金泰云内完成，<b>终端零留存</b>，所有过程数据与成果数据唯一沉淀到金泰数据中心。同一个动作同时产生两份价值——<b>归属完全不同，这是后面所有分析的基础</b>。</p>
 
     <div class="split reveal">
@@ -820,14 +842,14 @@ footer::before{content:"";position:absolute;top:0;left:0;right:0;height:2px;back
       </div>
     </div>
 
-    <h3 class="sub-h reveal">前提一 · <em>三层权属</em>——不约定权属，你只是保管员</h3>
+    <h3 class="sub-h reveal"><span class="sh-col"><span class="sh-t">前提一 · <em>三层权属</em></span><span class="sh-n">不约定权属，你只是保管员</span></span></h3>
     <div class="own-grid">
       <div class="own glass o1"><div class="lvl">客户私有层</div><h3>剧本 · 成片 · 业务数据</h3><p>归客户，金泰仅托管，独立加密域。物理在机房 ≠ 法律可处置。</p></div>
       <div class="own glass o2"><div class="lvl">授权共享层</div><h3>脱敏过程数据 · 通用素材</h3><p>合同明示授权用于优化与训练，客户可选退出——训练价值的法律来源。</p></div>
       <div class="own glass o3"><div class="lvl">金泰自有层</div><h3>模板 · 运营数据 · 自制内容</h3><p>归金泰，可入表可交易。<b style="color:var(--gold-bright)">条款须在首个客户签约前定稿。</b></p></div>
     </div>
 
-    <h3 class="sub-h reveal">前提二 · <em>分级托管</em>——「唯一回流」是对中小客户的产品，不是对所有客户的原则</h3>
+    <h3 class="sub-h reveal"><span class="sh-col"><span class="sh-t">前提二 · <em>分级托管</em></span><span class="sh-n">「唯一回流」是对中小客户的产品，不是对所有客户的原则</span></span></h3>
     <div class="tier-grid">
       <div class="tier glass reveal t1"><span class="t-tag">托管型</span><h3>全量回流</h3><div class="who">中小影视客户 · MCN · 制片公司</div><ul><li>数据唯一回流金泰数据中心</li><li>享全套资产服务：确权 · 素材库 · 审计</li></ul></div>
       <div class="tier glass reveal t2"><span class="t-tag">专属域型</span><h3>隔离专区</h3><div class="who">央视栏目组 · 政企 · 事业单位</div><ul><li>金泰机房内物理隔离专属区，客户持密钥</li><li>合规审计报告一键导出</li></ul></div>
@@ -842,7 +864,7 @@ footer::before{content:"";position:absolute;top:0;left:0;right:0;height:2px;back
 <section id="s5">
   <div class="wrap">
     <div class="step-mark reveal"><span class="sn">05</span><span class="sl">STEP FIVE · 模式复制</span></div>
-    <h2 class="reveal">行业算力链接：<em>分类分领域，合规即准入</em></h2>
+    <h2 class="reveal"><span class="nb">行业算力链接：</span><em><span class="nb">分类分领域，</span><span class="nb">合规即准入</span></em></h2>
     <p class="lead reveal">影视闭环沉淀为可复制的「行业包」，向一切需要算力与顶级模型的行业开放——<b>经金泰审核纳入体系，合规合法是第一道门</b>：政企与央视只用国产模型栈，商业创作按资质放行。</p>
 
     <div class="ind-grid">
