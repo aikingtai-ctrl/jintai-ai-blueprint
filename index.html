@@ -187,15 +187,16 @@ h1 .gold{background:linear-gradient(100deg,#f6dfa0,var(--gold) 55%,#8d6f2c);back
   transition:transform .5s cubic-bezier(.2,.8,.2,1),border-color .5s;
 }
 .ally:hover{transform:translateY(-4px)}
-.ally .am{flex:none;width:56px;height:56px;border-radius:15px;display:grid;place-items:center;font-size:25px;font-weight:900}
+.ally{padding:32px 36px}
+.ally .am{flex:none;width:66px;height:66px;border-radius:17px;display:grid;place-items:center;font-size:29px;font-weight:900}
 .ally.hc{border-color:rgba(177,140,255,.45)}
 .ally.hc:hover{border-color:rgba(177,140,255,.8)}
 .ally.hc .am{background:linear-gradient(135deg,#ddccff,#8a63d8);color:#160b26;box-shadow:0 0 28px rgba(177,140,255,.55)}
 .ally.jt{border-color:rgba(217,180,92,.5)}
 .ally.jt:hover{border-color:rgba(242,212,137,.85)}
 .ally.jt .am{background:linear-gradient(135deg,#f2d489,#b8933f);color:#141005;box-shadow:0 0 28px rgba(217,180,92,.55)}
-.ally h3{font-size:22px;font-weight:800;letter-spacing:.04em}
-.ally p{font-size:13.5px;color:var(--ink-2);letter-spacing:.05em;margin-top:2px}
+.ally h3{font-size:26px;font-weight:800;letter-spacing:.04em}
+.ally p{font-size:15px;color:var(--ink-2);letter-spacing:.05em;margin-top:4px}
 .ally-x{
   flex:none;width:68px;height:68px;border-radius:50%;display:grid;place-items:center;
   font-size:28px;font-weight:900;color:var(--gold-bright);
@@ -206,17 +207,17 @@ h1 .gold{background:linear-gradient(100deg,#f6dfa0,var(--gold) 55%,#8d6f2c);back
 @media(max-width:760px){.ally-x{margin:0 auto}}
 
 /* ===== 冲击力关键词条 ===== */
-.power{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;margin-top:18px;animation:heroUp 1s .7s both}
+.power{display:grid;grid-template-columns:1fr 1fr;gap:18px;margin-top:22px;animation:heroUp 1s .7s both}
 .pw{
-  padding:22px 24px;border-radius:16px;overflow:hidden;position:relative;
+  padding:34px 36px;border-radius:20px;overflow:hidden;position:relative;
   background:rgba(255,255,255,.06);border:1px solid var(--line);
   backdrop-filter:blur(24px) saturate(155%);-webkit-backdrop-filter:blur(24px) saturate(155%);
   transition:transform .4s,border-color .4s;
 }
 .pw:hover{transform:translateY(-4px)}
-.pw::after{content:"";position:absolute;top:0;left:0;right:0;height:3px}
-.pw h4{font-size:21px;font-weight:900;letter-spacing:.14em;margin-bottom:5px}
-.pw p{font-size:13px;color:var(--ink-2);letter-spacing:.02em;line-height:1.6}
+.pw::after{content:"";position:absolute;top:0;left:0;right:0;height:4px}
+.pw h4{font-size:28px;font-weight:900;letter-spacing:.16em;margin-bottom:8px}
+.pw p{font-size:15.5px;color:var(--ink-2);letter-spacing:.03em;line-height:1.7}
 .pw:nth-child(1) h4{color:var(--gold-bright)}
 .pw:nth-child(1)::after{background:linear-gradient(90deg,var(--gold-bright),transparent)}
 .pw:nth-child(1):hover{border-color:rgba(217,180,92,.6)}
@@ -497,12 +498,6 @@ footer .f-logo{color:var(--gold);font-weight:700;letter-spacing:.3em;margin-bott
       <div class="pw"><h4>通向未来</h4><p>AI 服务与智能体综合平台，服务各行各业</p></div>
     </div>
 
-    <div class="hero-stats">
-      <div class="hstat glass"><div class="n">6 排</div><div class="l">36kW 智算机柜体系<span class="tiny">6×12 IDC</span></div></div>
-      <div class="hstat glass"><div class="n">66 台</div><div class="l">12kW 智算 · 存储双用</div></div>
-      <div class="hstat glass"><div class="n">数万人</div><div class="l">同时在线应用承载</div></div>
-      <div class="hstat glass"><div class="n">6 组</div><div class="l">可满负荷支持的专业团队</div></div>
-    </div>
   </div>
   <div class="scroll-hint">SCROLL</div>
 </header>
@@ -537,7 +532,7 @@ footer .f-logo{color:var(--gold);font-weight:700;letter-spacing:.3em;margin-bott
       </div>
       <div class="fact glass reveal">
         <div class="fk"><small>COMPUTE · 现役系统</small>4×5090 + 8×H100</div>
-        <p>生成、推理、渲染同池支撑，现已满足数万人同时应用。</p>
+        <p>生成、推理、渲染同池支撑，现已满足<b style="color:var(--gold-bright)">数万人同时在线应用</b>。</p>
       </div>
       <div class="fact glass reveal wide">
         <div class="fk"><small>VIDEO · 影视生产</small><span class="nb">SEEDANCE 300万</span> <span class="nb">企业年包</span></div>
