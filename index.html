@@ -306,6 +306,111 @@ h1 .gold{background:linear-gradient(100deg,#f6dfa0,var(--gold) 55%,#8d6f2c);-web
 footer{padding:56px 0 48px;border-top:1px solid var(--line);text-align:center;color:var(--ink-3);font-size:13px;letter-spacing:.15em}
 footer .f-logo{color:var(--gold);font-weight:700;letter-spacing:.3em;margin-bottom:10px;font-size:15px}
 footer a{color:var(--gold);text-decoration:none}
+
+/* ============================================================
+   主题强化层：字号放大 · 色彩搭配 · 对比提亮
+   ============================================================ */
+:root{
+  --ink-2:#bcc7d9;
+  --ink-3:#8091a8;
+  --line:rgba(255,255,255,.13);
+  --glass:rgba(255,255,255,.055);
+  --glass-hi:rgba(255,255,255,.09);
+  --violet:#b18cff;
+  --violet-dim:rgba(177,140,255,.13);
+  --green:#6fe3a5;
+  --green-dim:rgba(111,227,165,.12);
+}
+body{font-size:17px}
+nav a{font-size:15px}
+.kicker{font-size:14px;letter-spacing:.38em}
+h2{font-size:clamp(30px,4.4vw,48px)}
+.lead{font-size:19px;max-width:800px;color:#c6d0e0}
+.lead b{color:#fff}
+.hero-sub{font-size:clamp(18px,2.1vw,22px);color:#c6d0e0}
+.step-mark .sl{font-size:15px}
+.chain-note{font-size:17px}
+.rail a .rn{font-size:14px}
+.rail a .rt{font-size:17px}
+.rail a .rd{font-size:13px;color:var(--ink-2)}
+.stat .lbl{font-size:14.5px}
+.chain-node h3{font-size:22px}
+.chain-node .cn-sub{font-size:13.5px}
+.chain-node li{font-size:15.5px;padding:9px 0 9px 22px}
+.lane-title{font-size:17px}
+.lane-node h4{font-size:18px}
+.lane-node p{font-size:14.5px}
+.sync-strip{font-size:15.5px}
+.bb-card h3{font-size:21px}
+.bb-card h3 small{font-size:12.5px}
+.bb-card p{font-size:15.5px}
+.studio-card h3{font-size:20px}
+.studio-card p{font-size:15px}
+.render-head .rt{font-size:14px}
+.render-head .rn{font-size:13.5px}
+.render-tags span{font-size:14px}
+.split-badge{font-size:14px}
+.split-card h3{font-size:26px}
+.split-card li{font-size:15.5px}
+.split-core{width:150px;height:150px;font-size:17px}
+.sub-h{font-size:24px}
+.own .lvl{font-size:13.5px}
+.own h3{font-size:19px}
+.own p{font-size:15px}
+.tier .t-tag{font-size:13px}
+.tier h3{font-size:21px}
+.tier .who{font-size:14px}
+.tier li{font-size:15px}
+.warn-strip{font-size:15.5px}
+.ind h3{font-size:20px}
+.ind .stack{font-size:14.5px}
+.ind p{font-size:15px;min-height:68px}
+.ind .t-chip{font-size:13px}
+.gate-note{font-size:16.5px}
+.phase-head h3{font-size:23px}
+.phase-head .time{font-size:14.5px}
+.phase-card li{font-size:15.5px}
+.gate .g-label{font-size:15.5px}
+.gate p{font-size:15px}
+footer{font-size:14.5px}
+
+/* ---- 五步主题色：① 鎏金 ② 科技青 ③ 电光紫 ④ 金 ⑤ 翡翠绿 ---- */
+.rail a:nth-child(2) .rn{color:var(--cyan)}
+.rail a:nth-child(3) .rn{color:var(--violet)}
+.rail a:nth-child(4) .rn{color:var(--gold-bright)}
+.rail a:nth-child(5) .rn{color:var(--green)}
+.rail a:nth-child(2):hover{border-color:rgba(87,200,242,.5)}
+.rail a:nth-child(3):hover{border-color:rgba(177,140,255,.5)}
+.rail a:nth-child(5):hover{border-color:rgba(111,227,165,.5)}
+
+#s2 .step-mark .sn{background:linear-gradient(180deg,#c3ecff,rgba(87,200,242,.14));-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent}
+#s2 .step-mark .sl{color:var(--cyan)}
+#s2 .kicker{color:var(--cyan)}
+#s2 h2 em{background:linear-gradient(100deg,#c3ecff,var(--cyan) 55%,#2a7ba0);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent}
+
+#s3 .step-mark .sn{background:linear-gradient(180deg,#ddccff,rgba(177,140,255,.14));-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent}
+#s3 .step-mark .sl{color:var(--violet)}
+#s3 h2 em{background:linear-gradient(100deg,#ddccff,var(--violet) 55%,#6b4bb8);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent}
+#s3 .bb-card .icon{background:var(--violet-dim);border-color:rgba(177,140,255,.35)}
+#s3 .bb-card .icon svg{stroke:var(--violet)}
+#s3 .bb-card h3 small{color:var(--violet)}
+#s3 .bb-card.glass:hover{border-color:rgba(177,140,255,.45)}
+
+#s5 .step-mark .sn{background:linear-gradient(180deg,#b6f2d2,rgba(111,227,165,.14));-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent}
+#s5 .step-mark .sl{color:var(--green)}
+#s5 h2 em{background:linear-gradient(100deg,#b6f2d2,var(--green) 55%,#2f9e66);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent}
+
+/* 行业卡图标配色：央视金 · 政企青 · 公安青 · 医药绿 · 金融紫 · 影视金 */
+.ind:nth-child(2) .icon,.ind:nth-child(3) .icon{background:var(--cyan-dim);border-color:rgba(87,200,242,.35)}
+.ind:nth-child(2) .icon svg,.ind:nth-child(3) .icon svg{stroke:var(--cyan)}
+.ind:nth-child(4) .icon{background:var(--green-dim);border-color:rgba(111,227,165,.35)}
+.ind:nth-child(4) .icon svg{stroke:var(--green)}
+.ind:nth-child(4) .stack{color:var(--green)}
+.ind:nth-child(5) .icon{background:var(--violet-dim);border-color:rgba(177,140,255,.35)}
+.ind:nth-child(5) .icon svg{stroke:var(--violet)}
+.ind:nth-child(5) .stack{color:var(--violet)}
+.ind:nth-child(4) .t-chip{color:var(--green);border-color:rgba(111,227,165,.4);background:var(--green-dim)}
+.ind:nth-child(5) .t-chip{color:var(--violet);border-color:rgba(177,140,255,.4);background:var(--violet-dim)}
 </style>
 </head>
 <body>
